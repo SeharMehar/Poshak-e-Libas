@@ -1,0 +1,46 @@
+﻿@page
+@model Poshak_lab7.Pages.Product.IndexModel
+@{
+    ViewData["Title"] = "Bridal Inventory Management";
+}
+
+<h2 class="my-3" style="color: #C2185B;">Bridal Wear Inventory Management</h2>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary" style="background-color: #A52A2A; border-color: #A52A2A;">Add New Product</a>
+</p>
+
+<table class="table table-bordered table-striped text-center align-middle">
+    <thead class="table-dark" style="background-color: #A52A2A;">
+        <tr>
+            <th>Id</th>
+            <th>Product Name</th>
+            <th>Category</th>
+            <th>Fabric</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Model.Products != null)
+        {
+            @foreach (var product in Model.Products)
+            {
+                <tr>
+                    <td>@product.ProductID</td>
+                    <td>@product.ProductName</td>
+                    <td>@product.Category</td>
+                    <td>@product.FabricType</td>
+                    <td>@product.Price.ToString("N2")</td>
+                    <td>@product.StockQuantity</td>
+                    <td>
+                        <a asp-page="Edit" asp-route-id="@product.ProductID" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-page="Delete" asp-route-id="@product.ProductID" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
